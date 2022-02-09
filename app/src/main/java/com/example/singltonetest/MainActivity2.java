@@ -63,7 +63,7 @@ public class MainActivity2 extends AppCompatActivity {
 
         if (songNumber == 0) {
             playMedia.setOnClickListener(v -> {
-                String url = "https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_700KB.mp3";      // -URL- You can take Variable -(url)-
+                String url = myUrl;      // -URL- You can take Variable -(url)-
                 MediaPlayer mediaPlayer = new MediaPlayer();
                 mediaPlayer.setAudioAttributes(
                         new AudioAttributes.Builder()

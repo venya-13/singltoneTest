@@ -9,6 +9,14 @@
     <ListView
         android:id="@+id/listViewSong"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:background="@color/purple_200" />
+
+    <Button
+        android:id="@+id/stopOwnSongButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="300dp"
+        android:text="Stop this!!!"/>
 
 </RelativeLayout>

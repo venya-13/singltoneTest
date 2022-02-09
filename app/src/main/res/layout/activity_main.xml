@@ -91,5 +91,5 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="550dp"
 
-        android:text="check permission" />
+        android:text="check permission (click 2 times)" />
 </RelativeLayout>
