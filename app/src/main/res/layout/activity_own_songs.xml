@@ -19,4 +19,12 @@
         android:layout_marginTop="300dp"
         android:text="Stop this!!!"/>
 
+    <Button
+        android:id="@+id/recordButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="400dp"
+        android:text="Click if you want to record voice with song"/>
+
+
 </RelativeLayout>

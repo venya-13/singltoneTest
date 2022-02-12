@@ -2,26 +2,24 @@ package com.example.singltonetest;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContextWrapper;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.io.File;
 import java.util.ArrayList;
 
 public class OwnSongs extends AppCompatActivity {
     private ListView listViewSong;
-    private Button stopOwnSongButton;
+    private Button stopOwnSongButton, recordButton;
     static MediaPlayer mediaPlayer;
 
     @Override
@@ -31,8 +29,10 @@ public class OwnSongs extends AppCompatActivity {
 
         listViewSong = findViewById(R.id.listViewSong);
         stopOwnSongButton = findViewById(R.id.stopOwnSongButton);
+        recordButton = findViewById(R.id.recordButton);
 
         stopOwnSongButton.setVisibility(View.GONE);
+        recordButton.setVisibility(View.GONE);
 
         displaySongs();
 
@@ -40,6 +40,16 @@ public class OwnSongs extends AppCompatActivity {
             mediaPlayer.stop();
             mediaPlayer.release();
         }
+
+        recordButton.setOnClickListener(v ->{
+            mediaPlayer.stop();
+            mediaPlayer.release();
+            mediaPlayer = null;
+            recordButton.setVisibility(View.GONE);
+            stopOwnSongButton.setVisibility(View.GONE);
+            Intent intent = new Intent(OwnSongs.this, MergeTwoFiles.class);
+            startActivity(intent);
+        });
 
         stopOwnSongButton.setOnClickListener(v ->{
             mediaPlayer.stop();
@@ -83,10 +93,18 @@ public class OwnSongs extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Uri uri = Uri.parse(mySongs.get(position).toString());
+
+//                ContextWrapper contextWrapper = new ContextWrapper(getApplicationContext());
+//                File musicDirectory = contextWrapper.getExternalFilesDir(Environment.DIRECTORY_MUSIC);
+//                File file2 = new File(musicDirectory, mySongs.get(position).getName().toString() + ".mp3");
+
                 mediaPlayer = MediaPlayer.create(getApplicationContext(), uri);
                 mediaPlayer.start();
+                Singltone.getInstance().setUri(uri);                                      //
+
 
                 stopOwnSongButton.setVisibility(View.VISIBLE);
+                recordButton.setVisibility(View.VISIBLE);
 
             }
         });
