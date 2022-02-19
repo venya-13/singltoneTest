@@ -24,6 +24,13 @@ public class MergeTwoFiles extends AppCompatActivity {
     MediaPlayer mediaPlayer2;
     MediaPlayer mediaPlayer3;
 
+    Uri uri = Singltone.getInstance().getUri();
+    //instance!!!
+
+    ContextWrapper contextWrapper = new ContextWrapper(getApplicationContext());
+    File musicDirectory = contextWrapper.getExternalFilesDir(Environment.DIRECTORY_MUSIC);
+    File file = new File(musicDirectory, "recordingFile" + ".mp3");
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,16 +39,18 @@ public class MergeTwoFiles extends AppCompatActivity {
         startMerge = findViewById(R.id.startMerge);
         startMerge.setVisibility(View.GONE);
 
-        Uri uri = Singltone.getInstance().getUri();//instance!!!
+
         mediaPlayer2 = MediaPlayer.create(getApplicationContext(), uri);
 
         startMerge.setOnClickListener(v ->{
-            ContextWrapper contextWrapper = new ContextWrapper(getApplicationContext());
-            File musicDirectory = contextWrapper.getExternalFilesDir(Environment.DIRECTORY_MUSIC);
-            File file = new File(musicDirectory, "recordingFile" + ".mp3");
+            merge();
 
         });
     }
+
+    private void merge() {
+    }
+
 
     public void startRecordWithMusic (View view){
 
